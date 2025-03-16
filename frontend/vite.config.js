@@ -9,5 +9,13 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src') // ✅ 配置路径别名
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true, // 防止 CORS 问题
+      }
+    }
   }
 });
