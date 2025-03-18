@@ -12,7 +12,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); //allows us to parse the body of the request
 
 app.use("/api/products", productRoutes);//this is the route for the products
-
+app.get('/api/hello', (req, res) => {
+    res.json({ message: '后端已经收到请求了！' });
+  });
 
 app.listen(PORT, () => {
     connectDB();

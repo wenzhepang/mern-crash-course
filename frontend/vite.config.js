@@ -14,8 +14,9 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
-        changeOrigin: true, // 防止 CORS 问题
+        
       }
     }
+
   }
 });

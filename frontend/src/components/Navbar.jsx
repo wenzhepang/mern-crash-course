@@ -32,13 +32,30 @@ const Navbar = () => {
           gradientTo="blue.200"
           bgClip="text"
         >
-          <Text fontSize="3xl" fontWeight="extrabold" color="transparent">
-            Product Store
-          </Text>
+          <Link to={"/"}>
+            <Text fontSize="3xl" fontWeight="extrabold" color="blue.500" _hover={{
+              color: "blue.700",
+              transform: "scale(1.1)",
+            }}
+            transition="all 0.3s ease-in-out"
+            _active={{
+              filter: "brightness(0.5)",
+            }}
+            >
+              Product Store
+            </Text>
+          </Link>
         </Box>
         <HStack gap={4} bgColor="transparent" p={2} borderRadius={10}>
-          <Link to="/">
-            <Button variant="outline" size="sm" bg={buttonBg} color={iconColor}>
+          <Link to="/create">
+            <Button variant="outline" size="sm" bg={buttonBg} color={iconColor} _hover={{
+              bg: "gray.500", 
+              transform: "scale(1.2)" 
+            }}
+            transition="transform 0.3s ease-in-out"
+            _active={{
+              filter: "brightness(0.5)",
+            }}>
               <CiSquarePlus />
             </Button>
           </Link>
@@ -49,6 +66,14 @@ const Navbar = () => {
             size="sm"
             bg={buttonBg}
             color={iconColor}
+            _hover={{
+              bg: "gray.500", 
+              transform: "scale(1.2)" 
+            }}
+            _active={{
+              filter: "brightness(0.5)",
+            }}
+            transition="transform 0.3s ease-in-out"
           >
             {colorMode === "light" ? <LuSun /> : <LuMoon />}
           </Button>

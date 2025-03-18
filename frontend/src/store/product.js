@@ -14,20 +14,27 @@ export const useProductStore = create((set) => ({
         'Content-Type': 'application/json',
       },
     })
+    console.log(response)
     const data = await response.json()
-    set((state) => ({ products: [...state.products, data.data] }))
+    set((state) => ({ products: [...state.products, data.product] }))
     return { success: 'Product created successfully' }
   },
-  getProducts: async () => {
-    const response = await fetch('/api/products', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+  fetchProducts: async () => {
+    const response = await fetch('/api/products')
+    const data = await response.json()
+    set({ products: data.products })
+
+  },
+  deleteProduct: async (productId) => {
+    const response = await fetch(`/api/products/${productId}`, {
+      method: 'DELETE',
     })
     const data = await response.json()
-    set({ products: data.data })
-
-    //
+    if (data.success) {
+      set((state) => ({ products: state.products.filter((product) => product._id !== productId) }))
+      return { success: 'Product deleted successfully' }
+    } else {
+      return { error: 'Failed to delete product' }
+    }
   }
 }))
