@@ -11,7 +11,7 @@ import {
 import { useProductStore } from "../store/product";
 import ProductCard from "../components/ProductCard";
 import { toaster, Toaster } from "@/components/ui/toaster";
-
+import ImgCard from "../components/ImgCard";
 const HomePage = () => {
   const { products, fetchProducts } = useProductStore();
   useEffect(() => {
@@ -56,9 +56,10 @@ const HomePage = () => {
             w={"full"}
             spacing={10}
             gap={10}
+            px={20}
           >
             {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <ImgCard key={product._id} product={product} />
             ))}
           </SimpleGrid>
         </VStack>
