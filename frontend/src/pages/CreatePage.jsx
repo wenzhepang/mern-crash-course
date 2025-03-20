@@ -57,6 +57,7 @@ const CreatePage = () => {
           borderRadius={"md"}
           borderColor={"black"}
         >
+
           <VStack spacing={4}>
             <Input
               onChange={(e) =>
@@ -74,7 +75,7 @@ const CreatePage = () => {
               transition="all 0.3s ease-in-out"
             />
             <Input
-              placeholder="Product Price"
+              placeholder="Price"
               name="price"
               type="number"
               value={newProduct.price}
@@ -90,7 +91,7 @@ const CreatePage = () => {
               transition="all 0.3s ease-in-out"
             />
             <Input
-              placeholder="Product Image"
+              placeholder="Image"
               name="image"
               value={newProduct.image}
               onChange={(e) =>
@@ -120,6 +121,7 @@ const CreatePage = () => {
               Create Product
             </Button>
           </VStack>
+          
         </Box>
       </VStack>
       <Toaster />

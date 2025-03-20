@@ -87,7 +87,6 @@ const ProductCard = ({ product }) => {
           </IconButton>
         </HStack>
       </Box>
-      <DialogCard />
     </Box>
   );
 };

@@ -1,11 +1,25 @@
-import { Button, CloseButton, Dialog, Portal, IconButton, Input } from "@chakra-ui/react"
+import { Button, CloseButton, Dialog, Portal, IconButton, Input} from "@chakra-ui/react"
 import { FaEdit } from "react-icons/fa";
 import { useColorModeValue } from "./ui/color-mode";
 import { useProductStore } from "../store/product";
 import { useState } from "react";
-const DialogCard = ({product}) => {
+import { Toaster, toaster } from "@/components/ui/toaster";
+const DialogCard = ({product, onClose}) => {
     const [updatedProduct, setUpdatedProduct] = useState(product || { name: '', price: '', image: '' });
     const { updateProduct } = useProductStore();
+    const handleUpdatedProduct = async () => {
+      
+      const { success} = await updateProduct(product._id, updatedProduct);
+      
+      if(success){
+      toaster.create({
+        title: 'Product updated',
+        description: 'Product updated successfully',
+        status: 'success',
+      })
+      onClose();
+    }
+    }
   const bgColor = useColorModeValue("white", "gray.700");
   return (
     <Dialog.Root>
@@ -36,8 +50,10 @@ const DialogCard = ({product}) => {
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
                 <Button variant="outline">Cancel</Button>
+              </Dialog.ActionTrigger >
+              <Dialog.ActionTrigger asChild>
+                <Button onClick={() => handleUpdatedProduct(product._id, updatedProduct)} >Save</Button>
               </Dialog.ActionTrigger>
-              <Button onClick={() => updateProduct(updatedProduct)}>Save</Button>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
               <CloseButton size="sm" />

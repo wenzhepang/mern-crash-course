@@ -5,6 +5,7 @@ import {
     Image,
     Heading,
     Text,
+    Spacer,
   } from "@chakra-ui/react";
   import React from "react";
   import { useColorModeValue } from "../components/ui/color-mode";
@@ -56,16 +57,8 @@ import {
         <Box p={4} bg={bgColor}>
   
           <HStack mt={2}>
-            {/* <IconButton
-              colorScheme="blue"
-              variant="ghost"
-              _hover={{
-                bg: "yellow.500",
-                transform: "scale(1.2)",
-              }}
-            >
-              <FaEdit />
-            </IconButton> */}
+            <Text fontSize="lg" fontWeight="bold" color={textColor}>{product.name}</Text>
+            <Spacer />
             <DialogCard product={product} />
   
             <IconButton

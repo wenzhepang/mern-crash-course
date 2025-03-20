@@ -39,27 +39,27 @@ export const useProductStore = create((set) => ({
   },
   updateProduct: async (productId, updatedProduct) => {
     try {
-        const response = await fetch(`/api/products/${productId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' }, // 添加 header
-            body: JSON.stringify(updatedProduct),
-        });
+      const response = await fetch(`/api/products/${productId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' }, // 添加 header
+        body: JSON.stringify(updatedProduct),
+      });
 
-        if (!response.ok) {
-            throw new Error('Failed to update product'); // 处理 HTTP 错误
-        }
+      if (!response.ok) {
+        throw new Error('Failed to update product'); // 处理 HTTP 错误
+      }
 
-        const data = await response.json();
+      const data = await response.json();
 
-        set((state) => ({
-            products: state.products.map((product) =>
-                product._id === productId ? data.product : product
-            ),
-        }));
+      set((state) => ({
+        products: state.products.map((product) =>
+          product._id === productId ? data.product : product
+        ),
+      }));
 
-        return { success: 'Product updated successfully' };
+      return { success: true };
     } catch (error) {
-        return { error: error.message }; // 返回错误信息
+      return { success: false, error: error.message }; // 返回错误信息
     }
-}
+  }
 }))
